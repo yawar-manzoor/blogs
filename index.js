@@ -1,4 +1,9 @@
 parentLi = document.querySelector("#parent-li");
+const storedItems = localStorage.getItem("listItems");
+if (storedItems) {
+  parentLi.innerHTML = storedItems;
+  reassignIndices();
+}
 
 // Add event listener to the "Add" button
 document.querySelector("#button-addon2").addEventListener("click", function () {
@@ -17,6 +22,7 @@ document.querySelector("#button-addon2").addEventListener("click", function () {
     ><button type="button" class="btn bg-danger" id="btn-del" onclick="Del(this)">Remove</button>`;
 
     parentLi.appendChild(cItem);
+    localStorage.setItem("listItems", parentLi.innerHTML);
 
     document.getElementById("Input-txt").value = "";
   } else {
@@ -29,6 +35,8 @@ document.querySelector("#button-addon2").addEventListener("click", function () {
 // Function to remove the current <li> element
 function Del(curEle) {
   curEle.parentNode.remove();
+  localStorage.setItem("listItems", parentLi.innerHTML);
+
   reassignIndices();
 }
 
