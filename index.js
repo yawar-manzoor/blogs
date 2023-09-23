@@ -51,18 +51,31 @@ function Edit(curEle) {
     newInp.className = "form-control";
     newInp.setAttribute("id", "INP");
     newInp.value = Etxt;
-    const element = document.getElementById("parent-li").children[0];
-    element.replaceChild(newInp, curEle.previousElementSibling);
+
+    // Find the parent <li> element of the clicked button
+    const listItem = curEle.closest("li");
+
+    // Replace the content of the parent <li> element
+    const h5Element = listItem.querySelector(".h5-txt");
+    listItem.replaceChild(newInp, h5Element);
   } else {
     curEle.textContent = "Edit";
     let newLiCont = document.getElementById("INP").value;
+
     let newli = document.createElement("h5");
     newli.setAttribute("class", "flex-grow-1 h5-txt");
     newli.textContent = newLiCont;
 
-    const element = document.getElementById("parent-li").children[0];
-    element.replaceChild(newli, curEle.previousElementSibling);
+    // Find the parent <li> element of the clicked button
+    const listItem = curEle.closest("li");
+
+    // Replace the content of the parent <li> element
+    const inputElement = listItem.querySelector("input");
+    listItem.replaceChild(newli, inputElement);
   }
+
+  // Update local storage after editing
+  localStorage.setItem("listItems", parentLi.innerHTML);
 }
 
 // Function to reassign indices after deletion
