@@ -39,7 +39,7 @@ function Del(curEle) {
 
   reassignIndices();
 }
-alert("hello");
+
 // Function to edit the <h5> element
 function Edit(curEle) {
   if (curEle.textContent == "Edit") {
